@@ -1,0 +1,68 @@
+create database studentrecord;
+use studentrecord;
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address TEXT,
+    marks INT,
+    city VARCHAR(50)
+);
+INSERT INTO students (student_id, name, address, marks, city) VALUES
+(1, 'Rahul Sharma', '12 MG Road, Sector 5', 85, 'Delhi'),
+(2, 'Anjali Mehta', '45 Lake View Street', 92, 'Mumbai'),
+(3, 'Amit Verma', '22 Hilltop Avenue', 78, 'Pune'),
+(4, 'Sneha Reddy', '67 Main Street', 88, 'Hyderabad'),
+(5, 'Karan Joshi', '33 Residency Road', 73, 'Bangalore'),
+(6, 'Pooja Singh', '9 Park Lane', 95, 'Chennai'),
+(7, 'Ravi Kumar', '101 Green Colony', 69, 'Patna'),
+(8, 'Neha Kapoor', '4 Rose Garden', 91, 'Jaipur'),
+(9, 'Arjun Das', '56 Station Road', 80, 'Kolkata'),
+(10, 'Meena Nair', '18 Church Street', 76, 'Kochi');
+
+SELECT * FROM students WHERE marks BETWEEN 75 AND 90;
+
+SELECT * FROM students WHERE city IN ('Delhi', 'Mumbai', 'Chennai');
+
+SELECT * FROM students ORDER BY marks DESC;
+
+SELECT name, marks, city FROM students WHERE marks > 90
+UNION
+SELECT name, marks, city FROM students WHERE marks < 70;
+
+SELECT city, AVG(marks) AS avg_marks FROM students WHERE marks BETWEEN 70 AND 95 GROUP BY city ORDER BY avg_marks;
+
+SELECT COUNT(*) AS total_students FROM students;
+
+SELECT SUM(marks) AS total_marks FROM students;
+
+SELECT MIN(marks) AS lowest_marks FROM students;
+
+SELECT MAX(marks) AS highest_marks FROM students;
+
+SELECT city, AVG(marks) AS avg_marks FROM students GROUP BY city;
+
+SELECT 
+    name,
+    marks,
+    CASE
+        WHEN marks >= 90 THEN 'Excellent'
+        WHEN marks >= 75 AND marks < 90 THEN 'Good'
+        WHEN marks >= 50 AND marks < 75 THEN 'Average'
+        WHEN marks < 50 THEN 'Fail'
+        ELSE 'No Marks'
+    END AS performance
+FROM students;
+
+SELECT * FROM students WHERE name LIKE 'A%';
+
+SELECT * FROM students WHERE name LIKE '_n%a';
+
+
+
+
+
+
+
+
+
+
